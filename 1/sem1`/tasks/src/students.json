@@ -1,0 +1,8 @@
+{
+  "students":
+  [
+    {"name":"John","surname":"Smith","b.y.":1992,"avg_grade":5.0},
+    {"name":"Jane","surname":"Smith","b.y.":1993,"avg_grade":4.9},
+    {"name":"Eva","surname":"Corei","b.y.":1994,"avg_grade":4.8}
+  ]
+}

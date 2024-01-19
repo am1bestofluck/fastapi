@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Students</h1>
+{% for unit in [a,b,c] %}
+name:{{ unit.full_name }} age: {{ unit.age }} grade: {{ unit.avg }}<br>
+{% endfor %}
+<h2>Students over</h2>
+
+{% for num in range(10) %}
+{{ items }} {{ num }}
+{% endfor %}
+</body>
+</html>

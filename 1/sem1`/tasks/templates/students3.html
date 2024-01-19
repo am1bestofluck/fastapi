@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Students</h1>
+{% for unit in students.keys() %}
+name: {{ unit }}; age:{{ students[unit][0] }}; grade: {{ students[unit][1] }}<br>
+{% endfor %}
+<h2>Students over</h2>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'template.html' %}
+{% block content %}
+    <div class="storeitems">
+    <a href="{{ url_for('get_hats') }}">шапкии</a>
+    <a href="{{ url_for('get_jackets') }}">куртки!</a>
+    <a href="{{ url_for('get_shoes') }}">Обувь</a>
+    </div>
+{% endblock %}
+</body>
+</html>
