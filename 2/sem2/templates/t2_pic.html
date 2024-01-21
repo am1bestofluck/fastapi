@@ -1,0 +1,3 @@
+{% extends 'l2_base.html' %} {% block content %}
+<a href="{{ url_for('upload_pic')}}">upload your art!</a>
+<img class="pic" src="{{ url_for('static',filename='t2_base.png') }}" alt=""> {% endblock %}

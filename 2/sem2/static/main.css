@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(244, 217, 248);
+}
+
+.title_l2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    margin-left: 2vmax;
+    margin-right: 2vmax;
+    height: 80min;
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.pic {
+    width: 80%;
+    height: 80%;
+}

@@ -1,0 +1,8 @@
+{% extends 'l2_base.html' %}
+{% block content %}
+<form method="post" action="{{ url_for('check_pw') }}">
+    <input type="email" name="mail"  autofocus placeholder="mail here">
+    <input type="password" name="pw"   placeholder=" pw here">
+    <input type="submit" value="auth!">
+</form>
+{% endblock %}
