@@ -1,0 +1,14 @@
+{% extends 't5_base.html' %}
+
+
+{% block item %}
+<form method="post" action="submit">
+    Number#0: <input type="number" name="fst" class="striped" value="12345679" required><br>
+    OP: <input type="radio" name="op"  value="+" id="op1"><label for="op1">+</label>&nbsp;
+    <input type="radio" name="op"  value="-" id="op2"><label for="op2">-</label>&nbsp;
+    <input type="radio" name="op"  value="*" id="op3" checked><label for="op3">*</label>&nbsp;
+    <input type="radio" name="op"  value="/" id="op4"><label for="op4">+</label><br>
+    Number#1: <input type="number" name="snd" id="1" class="striped" value="99" required><br>
+    <input type="image" class="submit_b" src=" {{ url_for('static',filename='img/sub_but.png') }}">
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+    <title>{% block name %} #todo {% endblock %}</title>
+</head>
+<body>
+<div class="task5">
+    <h1>{% block task_header %}#todo {% endblock %}</h1>
+</div>
+<div class="splitscreen">
+    <div class="content">
+       {% block item %} #todo {% endblock %}
+    </div>
+    <div class="pic"> {% block showcase %}  pic {% endblock %} </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(248, 229, 248);
+}
+
+@font-face {
+    font-family: "cursive_";
+    src: url("../fonts/Morning\ Waves.otf");
+}
+
+.splitscreen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    margin: 3svw 0;
+    width: auto;
+}
+
+.task5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive_;
+}
+
+.task5_out {
+    font-family: cursive_
+}
+
+h1 {
+    font-family: inherit;
+    color: rgb(44, 26, 44);
+}
+
+.striped {
+    background-color: rgb(44, 26, 44);
+    color: white;
+    font-weight: 700;
+}
+
+.submit_b {
+    width: 10svw;
+    height: 7svh;
+}
+
+.pic {
+    position: relative;
+}
+
+.pic_i {
+    width: 27svw;
+    height: 48svh;
+}
