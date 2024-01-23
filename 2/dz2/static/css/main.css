@@ -55,3 +55,12 @@ h1 {
     width: 27svw;
     height: 48svh;
 }
+
+.peach {
+    width: 50svw;
+    height: 50svh;
+}
+
+.noshow {
+    display:none;
+}

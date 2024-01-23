@@ -1,0 +1,9 @@
+{% extends 'base_single_item.html' %}
+
+{% block name %} Error {{ error_code }} {% endblock %}
+{% block task_header %}
+Error.
+{% endblock %}
+{% block item %}
+{{ error_message }}
+{% endblock %}

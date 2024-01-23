@@ -1,1 +1,15 @@
 {% extends 'base.html' %}
+{% block name  %} age validation {% endblock %}
+
+{% block task_header %} Age validation {% endblock %}
+
+{% block item %}
+<form action=" {{ url_for('content') }}" method="post">
+    Name: <input class="striped" type="text" name="name" required autofocus><br>
+    Age: <input class="striped" type="number" name="age" required><br>
+    <input type="image" class="submit_b" src=" {{ url_for('static',filename='img/sub_but.png') }}">
+</form>{% endblock %}
+
+<div class="noshow"> {% block showcase %} {% endblock %}
+</div>
+
