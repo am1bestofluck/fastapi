@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+    <title>{% block name %} #todo {% endblock %}</title>
+</head>
+<body>
+<div class="task9">
+    {% block task_header %}#todo {% endblock %}
+</div>
+<div class="task5">
+    <div class="content">
+       {% block item %}{% endblock %}
+    </div>
+</body>
+</html>

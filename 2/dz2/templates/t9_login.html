@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block name %} {{ title }} {% endblock %}
+
+{% block task_header %} {{ header }} {% endblock %}
+
+{% block item %}
+<form class="vertical" action="submit" method="post">
+    <div class="cell">mail:<input type="email" name="mail" class="striped maxw" autofocus></div>
+
+    <div class="cell">name:<input type="text" name="name" class="striped maxw" ></div>
+    <input type="image" class="submit_b" src=" {{ url_for('static',filename='img/sub_but.png') }}">
+</form> {% endblock %}
+
+{% block showcase %}  <img class="peach" src="{{ picture }}" alt=""> {% endblock %}

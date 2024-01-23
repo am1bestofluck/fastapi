@@ -64,3 +64,40 @@ h1 {
 .noshow {
     display:none;
 }
+.vertical {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+
+}
+.cell {
+    min-height:5svh;}
+
+.maxw {
+    width:auto;
+    }
+
+.topline {
+display:flex;
+}
+
+.task9 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: cursive_;
+}
+a {
+    text-decoration:none;
+    font-family:inherit;
+    font-size:inherit;
+    color:inherit;}
+
+.pretty_font {
+    font-family: cursive_;
+}
+
+.broad_input {
+    min-width: 10svw;
+}

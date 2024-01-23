@@ -1,0 +1,8 @@
+{% extends 'base_single_item_9.html' %}
+{% block name %} Control panel {% endblock %}
+
+{% block task_header %}
+  <div class="item_top">Hello, {{ name }}</div>
+  <div class="item_top">
+    <form action="{{ url_for('logout') }}" method="post"><input class="pretty_font broad_input" type="submit" value="Logout"> </form></div>
+{% endblock %}
