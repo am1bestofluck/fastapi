@@ -1,0 +1,84 @@
+[1]
+
+устанавливаем мост к бд	pip install Flask-SQLAlchemy
+
+подгружаем базу в скрипт	from flask_sqlalchemy import SQLAlchemy
+
+связываем базу и хост	app = Flask(__name__)    app.config["SQLALCHEMY_DATABASE_URI'] = 'link'    db=SQLAlchemy(app)
+
+ссыллка на sqlite	'sqlite///mydatabase.db'
+
+ссылка на mysql	'mysql+pymysql://username:password@hostname/database_name', где username, password, hostname, database_name-маски
+
+ссылка на PostgreSQL	postgresql+psycopg2://username:password@hostname/database_name
+
+как инициализировать базу если она в другом файле 	db.init_app(app);   from db_module import SQLAlchemy as db    app = Flask(__name__)    app.config['SQLALCHEMY_DATABASE_URI'] = 'link'    db.init_app(app)
+
+от какого класса наследуются сущности базы	class Entity(db.Model)
+
+поле класса, первичный ключ	db.Column(primary_key=True)
+
+тип, строка определенной длины	db.String(len)
+
+аттрибуты поля: уникальный, обязательный для заполнения 	db.Column(unique=True, nullable=False)
+
+аттрибуты поля: дата	db.DateTime
+
+строковые типы(2) 	db.Text, db.String
+
+числовые типы(3) 	db.Integer, db.Decimal, db.Boolean, db.Float
+
+тип перечисление	db.Enum
+
+[2]
+
+внешний ключ 	db.Column(db.Integer, db.ForeignKey('table.Column'))
+
+создаём отношения между таблицами 	db.relationship("Other_class",backref='exemplar_of_other_class',lazy=True)
+
+после того как создали макет, создаём таблицу 	from models import db, Entity1, Entity2, Entity3    @app.cli.command("init-db")  db.create_all()
+
+что делает аргумент @app.cli.command("command_text") 	создаёт команду для консоли - flask command_text
+
+шаблон поиска 	item =Table_name.query.filter_by(column_name='item')<.first()>
+
+шаблон изменений 	db.session.<action>(item)  db.session.commit()
+
+добавляем запись в бд 	{user = User(name="J",mail="q@w.e")  db.session.commit()}    @app.cli.command("add-j")  def add_user():  {}  print("added!")
+
+изменяем запись в бд 	{ user = User.query.filter_by(username="J").first()  user.mail="new@mail.r"  db.session.commit()  }    @app.cli.command("edit-J")  def edit_user(): {} print("edited!")
+
+удаляем запись из бд 	{ user = User.query.filter_by(username="J")  db.session.delete(user)  db.session.commit()}  @app.cli.command("delete-J")    def del_J():  {} print("deleted J")
+
+получаем данные из базы 	{users = Table_name.query.all()}    @app.route('/users/')  def all_users():  {}  context = {'users':users}  return render_template('users.html', **context)
+
+получаем фильтров все результаты 	Table_name.query.filter(Table_name.column == property).all()
+
+встроенная во flask конвертация в json, её особенность 	from flask import jsonify    jsonify() запускается только в контексте функций Flask()
+
+CSRF-атака 	Cross-Site Request Forgery 	атака, позволяющая через редирект <form action = "other.site/do-stuff" method="POST">, пользуясь cookies сеанса действовать от имени пользователя.
+
+защита от csrf( колхоз :)) ) 	flask.Response.set_cookie(samesite=True)
+
+Flask-WTForm. Что делает(3).	создаёт и обрабатывает формы; валидирует данные; защищает от csrf и пр.
+
+[3]
+
+устанавливаем Flask-WTF 	 pip install Flask-WTF
+
+импортируем Flask-WTF 	from flask_wtf import FlaskForm
+
+защита от csrf(Flask-WTF), разворот 	from flask_wtf.csrf import CSRFProtect  app= Flask(__name__)  app.config['SECRET_KEY']  csrf = CSRFProtect(app)
+
+защита от csrf(FLASK-WTF), декоратор 	@app.route("/form",methods=["POST","GET"])  @csrf.exempt  def my_form():
+
+класс-предок WTF-форм 	from flask_wtf import FlaskForm
+
+типы ввода, WTF-формы 	import {wtforms}; # from {} import StringField, PasswordField
+
+обязательный ввод, WTF-формы 	from wtforms.validators import DataRequired
+
+Форма с паролем  	Class AuthForm(FlaskForm):  passw = PasswordField("Password",validators=[DataRequired()])
+
+
+пример чекбокса 	color = SelectField('Color',choices=[0,1]
