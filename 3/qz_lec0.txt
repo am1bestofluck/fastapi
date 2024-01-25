@@ -6,7 +6,7 @@
 
 связываем базу и хост	app = Flask(__name__)    app.config["SQLALCHEMY_DATABASE_URI'] = 'link'    db=SQLAlchemy(app)
 
-ссыллка на sqlite	'sqlite///mydatabase.db'
+ссылка на sqlite(2)	'sqlite///mydatabase.db' если создаём новую базу или 'sqlite///<relative_path_to_database.db>', путь к базе от исполняемого файла
 
 ссылка на mysql	'mysql+pymysql://username:password@hostname/database_name', где username, password, hostname, database_name-маски
 
@@ -34,7 +34,7 @@
 
 внешний ключ 	db.Column(db.Integer, db.ForeignKey('table.Column'))
 
-создаём отношения между таблицами 	db.relationship("Other_class",backref='exemplar_of_other_class',lazy=True)
+создаём отношения между таблицами 	db.relationship("Other_class_name",backref='exemplar_of_other_class',lazy=True)
 
 после того как создали макет, создаём таблицу 	from models import db, Entity1, Entity2, Entity3    @app.cli.command("init-db")  db.create_all()
 
@@ -80,5 +80,78 @@ Flask-WTForm. Что делает(3).	создаёт и обрабатывает
 
 Форма с паролем  	Class AuthForm(FlaskForm):  passw = PasswordField("Password",validators=[DataRequired()])
 
+пример чекбокса 	state = SelectField('state',choices=[0,1]
 
-пример чекбокса 	color = SelectField('Color',choices=[0,1]
+список валидаторов 	from flask_wtf import vaildators
+
+валидатор почты 	pip install email-validator
+
+аргумент valdators.EqualTo	строковое имя переменной
+
+форма авторизации из WTForms 	from forms import LoginForm
+
+валидация ввода - инструмент 	from forms import RegistrationForm
+
+валидация ввода - синтаксис 	form = RegistrationForm()  if request.method == "POST" and form.validate()  #обработка данных
+
+[4]
+
+макет формы 	<form method = "POST" action = {{ url_for('')}}>  {{ form.csrf_token}}  {% for field in form if form_name !=form.csrf_token %} {{ field.label }} {{ field}} #валиадция вввода {%  endfor %} <input type="submit" value="do">
+
+блок вывода ошибок, макет 	{% if form.errors %} <ul class ="mistakes"> {% for error in form.errors %}< li> error </li> {% endfor %} </ul>{% endif %}
+
+удаляем cookie 	out = make_response(render_template("q.html",**argsdict))  out.set_cookie("name_cookie", max_age=0)  return out
+
+меняем порт запуска 	app.run(port=80)
+
+как вставляем картинки 	пробрасываем из скрипта url_for('static','img/pic.png')
+
+картинка из скрипта, в шаблоне <img class="pic_i" src=" {{ pic }}" alt="">
+
+радио(исключающее или) инпут 	<input type="radio" name="repeated_name" value="item0" id=<separate_id0> <input type="radio" name="repeated_name" value="item1" id=<separate_id1>
+
+общий совет по шаблонам( избегаем антипаттернов)	шаблон не должен нести функционал
+
+особенность app.config['SQLALCHEMY_DATABASE_URI'] в исполнении sqlite(2) 	дефолтный вариант; база создаётся при инициализации
+
+что такое pymysql и psycopg2 в app.confing['SQLALCHEMY_DATABASE_URI'] 	модули требующие установки через pip
+
+в какую папку sqlalchemy ложит файл sqlite 	./instance
+
+Порядок создания бд(4) 	определение классов; определение полей классов; определение связей между классами; заполнение таблиц
+
+разница между db.Float и db.Decimal 	у db.Float погрешность плавающей точки больше; где требуется точность - юзаем Decimal
+
+типовой индикатор любой таблицы 	id = db.Column(db.Integer, primary_key=True)
+
+задаём значение поля при создании 	created_at = {default=0} db.Column(db.DateTime, default= datetime.utcnow)
+
+[5]
+
+db.relationship(backref="other_table") - устарело; что пользовать вместо него 	db.relationship("String_name_of_other_Class",back_populates='link title')
+
+что означает db.relationship( lazy = True) 	делать запрос в базу по раскрывающемуся списку только в момент когда пользователь запрашивает эту информацию
+
+что импортировать при создании базы данных из другого модуля 	имя самой бд, и всех классов - таблиц
+
+добавлям в консоль flask новые команды 	в wsgi.py(дефолтный файл) flask run импортируем сервер и py-файлы, содержащие функционал декорируемый ярлыком для консоли( @app.cli.command("command_name"))
+
+где лежит папка созданная папка instance 	в папке c wsgi.py
+
+плагин pycharm для работы с sqlite	 database navigator
+
+консоль это здорово конечно, но какой дефолтный сценарий добавления	при обработке формы собираем данные и добавляем в базу в рамках app.post()
+
+чем может быть вызвана ошибка (sqlite3.OperationalError)database is locked	ошибка автономного доступа. sqlite3 это один файл и у него не может быть больше одного редактора; нужно разорвать остальные соединения.
+
+как "удаляем" из БД добавляем ключ visible с дефолтом True; удаление элемента переключает элемент в False. При отсеве работаем только с видимыми элементами
+
+Как добавляем в базу элемент с внешним ключем 	при создании ложим в внешний ключ объект из базы; querried_obj= Class1.query.filter_by(field_of_cl1='value').first()  new_Class2 = Class2(field1="hot" foreign_key=querried_obj)  db.session.add(new_Class2)  db.session.commit()
+
+как обращаемся к полям объекта таблицы	object.field
+
+синтаксис вызова jsonify для итераторов 	словарь- создаваемый через list comprehension  return jsonify([ {"key1":item.field1,"key2":item.field2} for item in fitered]
+
+если выборка ничего не нашла, что делаем? 	возвращаем заготовку и код ошибки 	return {"error":"got no nothing!"}, 404
+
+01:06
