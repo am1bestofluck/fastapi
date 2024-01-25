@@ -50,7 +50,7 @@
 
 удаляем запись из бд 	{ user = User.query.filter_by(username="J")  db.session.delete(user)  db.session.commit()}  @app.cli.command("delete-J")    def del_J():  {} print("deleted J")
 
-получаем данные из базы 	{users = Table_name.query.all()}    @app.route('/users/')  def all_users():  {}  context = {'users':users}  return render_template('users.html', **context)
+получаем данные из базы F	{users = Table_name.query.all()}    @app.route('/users/')  def all_users():  {}  context = {'users':users}  return render_template('users.html', **context)
 
 получаем фильтров все результаты 	Table_name.query.filter(Table_name.column == property).all()
 
@@ -96,7 +96,7 @@ Flask-WTForm. Что делает(3).	создаёт и обрабатывает
 
 [4]
 
-макет формы 	<form method = "POST" action = {{ url_for('')}}>  {{ form.csrf_token}}  {% for field in form if form_name !=form.csrf_token %} {{ field.label }} {{ field}} #валиадция вввода {%  endfor %} <input type="submit" value="do">
+макет формы 	<form method = "POST" action = {{ url_for('')}}>  {{ form.csrf_token}}  {% for field in form if field.name !='csrf_token' %} {{ field.label }} {{ field}} #валиадция вввода {%  endfor %} <input type="submit" value="do">
 
 блок вывода ошибок, макет 	{% if form.errors %} <ul class ="mistakes"> {% for error in form.errors %}< li> error </li> {% endfor %} </ul>{% endif %}
 
@@ -154,4 +154,15 @@ db.relationship(backref="other_table") - устарело; что пользов
 
 если выборка ничего не нашла, что делаем? 	возвращаем заготовку и код ошибки 	return {"error":"got no nothing!"}, 404
 
-01:06
+более точные фильтры 	задаём несколько условий
+
+@csrf.exempt 	отключает защиту от csrf
+
+порядок создания формы 	1) выбираем класс формы 2) описываем поля 3) определяем валидацию
+
+импортируем типы полей	from wtforms import ?
+
+зачем в форму ложить {{ form.csrf_token }} 	защищаем от подделки
+
+CRUD 	Create Read Update Delete
+
