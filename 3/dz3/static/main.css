@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(212, 176, 176);
+}
+
+_header {
+    font-size: larger;
+}
+
+main {
+    display: flex;
+}

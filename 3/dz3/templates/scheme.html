@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ header }}</title>
+    <link rel="stylesheet" href=" {{ css }}">
+</head>
+<body>
+<h1 class="_header">{{ header }}</h1>
+<div class="main">{% block content %} todo {% endblock %}
+</div>
+</body>
+</html>

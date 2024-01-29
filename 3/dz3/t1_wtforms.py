@@ -1,8 +1,9 @@
+from secrets import token_hex
+
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-from secrets import token_hex
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import Length, Email, email, DataRequired, equal_to
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms import validators
 
 from t1 import app
 
@@ -13,8 +14,15 @@ print(app.config['SECRET_KEY'])
 
 
 class LoginForm(FlaskForm):
-    name_form = StringField()
-    surname_form = StringField()
-    email_form = StringField()
-    password_form = PasswordField()
-    confirm_form = PasswordField()
+    name_form = StringField("Name", validators=[validators.InputRequired()])
+    surname_form = StringField("Surname",
+                               validators=[validators.InputRequired()])
+    email_form = StringField("Mail", validators=[validators.InputRequired(),
+                                                 validators.Email()])
+    password_form = PasswordField("Password",
+                                  validators=[validators.InputRequired()])
+    confirm_form = PasswordField("Confirm Password", validators=[
+        validators.EqualTo('password_form')])
+    agreement_form = BooleanField(
+        "Agree to have my data stored, sold, misused in any ways biz sees fit.",
+        validators=[validators.InputRequired()])
