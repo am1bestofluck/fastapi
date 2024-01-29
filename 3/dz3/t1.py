@@ -11,13 +11,20 @@
  а пароль должен быть зашифрован.
 """
 
+from secrets import token_hex
+
 from flask import Flask, request, render_template, url_for
+from flask_wtf.csrf import CSRFProtect
 
 # noinspection PyUnresolvedReferences
 from t1_db import db, User
+from t1_wtforms import LoginForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.db"
+app.config['SECRET_KEY'] = token_hex()
+
+csrf = CSRFProtect(app)
 db.init_app(app)
 
 
@@ -29,4 +36,4 @@ def index():
         pass
 
     return render_template("form.html", css_file=css,
-                           header=header)
+                           header=header, form=LoginForm())

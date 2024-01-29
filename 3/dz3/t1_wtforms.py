@@ -1,16 +1,9 @@
 from secrets import token_hex
 
 from flask_wtf import FlaskForm
-from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms import validators
 
-from t1 import app
-
-app.config['SECRET_KEY'] = token_hex()
-csrf = CSRFProtect(app)
-
-print(app.config['SECRET_KEY'])
 
 
 class LoginForm(FlaskForm):
