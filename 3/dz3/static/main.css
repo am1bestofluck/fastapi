@@ -1,16 +1,25 @@
 * {
     margin: 0;
     padding: 0;
-    border: 0;
-    background-color: rgb(212, 176, 176);
+}
+
+body {
+    background-color: rgb(236, 225, 225);
 }
 
 _header {
     font-size: larger;
 }
 
-main {
+.main {
     display: grid;
     grid-template-columns: 2fr 3fr;
+    grid-template-rows: auto;
     padding: 5vw;
+}
+
+#proceed {
+    grid-column: 1/-1;
+    background-color: rgb(194, 172, 212);
+    border: 0;
 }

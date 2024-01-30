@@ -1,11 +1,14 @@
 {% extends 'scheme.html' %}
 
 {% block content %}
-
+<form class="main" method="post">
 {{ form.csrf_token }}
 
 {% for item in form if item.name != 'csrf_token' %}
-{{ item.label}}
+{% if item.name != 'proceed' %}
+{{ item.label }}
+{% endif %}
 {{ item }}
 {% endfor %}
+</form>
 {% endblock %}

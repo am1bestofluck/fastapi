@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title> {{ header }}</title>
-    <link rel="stylesheet" href=" {{ url_for('static',filename='main_css') }}">
+    <link rel="stylesheet" href=" {{ url_for('static',filename='main.css') }}">
 </head>
 <body>
 <h1 class="_header">{{ header }}</h1>
-<div class="main">{% block content %} todo {% endblock %}
+<div>{% block content %} todo {% endblock %}
 </div>
 </body>
 </html>
