@@ -13,4 +13,22 @@
 * многопроцессорный подход многозадачности 	программа выполняет код в разных процессах. Каждый процесс выполняет свою задачу независимо от других процессов; процессы могут быть развёрнуты на разных ядрах cpu/gpu
 * штатный модуль многопроцессорного кода 	import multiprocessing
 * разворачиваем многопроцессорный объект 	multipr_ = multiprocessing.Process( target=worker, args=(i,))
-* запускаем многопроцессорный объект 	multipr_.start() mulipr_.join()
+* запускаем многопроцессорный объект(2) 	multipr_.start() mulipr_.join()
+* семафор 	метод синхронизации работы процессов в основе которого лежит счётчик который увеличить или уменьшить на еденицу. Уменьшить ноль нельзя - операция блокируется.
+* безопасная для многопоточности переменная 	multiprocessing.Value('str_name',0)
+* блокируем переменную для изменения другими процессами 	a = multiprocessing.Value('i',0) with a.get_lock(): a.value +=1
+* асинхронный подход к многозадачности	в рамках одного потока, через события и обратные вызовы программа обрабатывает несколько задач
+* штатная библиотека асинхронности 	import asyncio
+* корутина 	фунция которая может приостанавливать своё действие, освобожая процессор для других корутин
+* событие	используется чтобы уведомлять корутину, команда ждать/действовать 
+* цикл событий 	 алгоритм выполнения корутин и обработки событий
+* синтаксис асинхронной функции 	async def fname(): pass
+* признак корутинного оператора await action(args)
+* ждём асинхронно 	await asyncio.sleep(t)
+* запускаем асинхронную функцию async def main(): task1 = asyncio.create_task(async_func()) await task1    asyncio.run(main())
+* запускаем несколько функций однострочно 	await asyncio.gather( asyncfunc(), asyncfunc() )
+* рекурсивно проходим по папке for file in Path(".").rglob('pattern'): do(file)
+* рекомендуемый интерфейс для веб-запросов(aiohttp) 	aiohttp.ClientSession()
+* качаем страничку асинхронно 	async with ClientSession() as cli:  async with cli.get(url) as html: return await html.text()
+* asyncio, собираем пул заданий 	def main():    tasks=[]  for i in todo:  task =asyncio.ensure_future(do(i))  tasks.append(task)  await asyncio.gather(\*tasks)
+* asyncio, запускаем пул заданий 	loop = asyncio.get_event_loop()  loop.run_until_complete(main())
