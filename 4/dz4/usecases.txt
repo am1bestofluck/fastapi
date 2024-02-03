@@ -3,3 +3,5 @@ python website.py 0 https://zieduparadize.lv/wp-content/uploads/2017/01/rozes40c
 python website.py 1 https://zieduparadize.lv/wp-content/uploads/2017/01/rozes40cmdzeltenas.jpg https://pukupiegade.lv/wp-content/uploads/2024/01/19ZZR107-2.jpg https://viarcanvas.com/storage/gallery-items/November2020/D9wI1879SbxGzlMMR0tb.jpg
 
 python website.py 2 https://zieduparadize.lv/wp-content/uploads/2017/01/rozes40cmdzeltenas.jpg https://pukupiegade.lv/wp-content/uploads/2024/01/19ZZR107-2.jpg https://viarcanvas.com/storage/gallery-items/November2020/D9wI1879SbxGzlMMR0tb.jpg
+
+python website.py 3 https://zieduparadize.lv/wp-content/uploads/2017/01/rozes40cmdzeltenas.jpg https://pukupiegade.lv/wp-content/uploads/2024/01/19ZZR107-2.jpg https://viarcanvas.com/storage/gallery-items/November2020/D9wI1879SbxGzlMMR0tb.jpg
