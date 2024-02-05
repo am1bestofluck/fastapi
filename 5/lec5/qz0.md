@@ -27,3 +27,13 @@
 * указываем http-путь до файла документации 	app= FastAPI(openapi_url="/path/to/openapi.json")
 * генерируем документацию 	def forge_docs():  if app.openapi_schema: return app.openapi_schema    openapi_schema = get_openapi(title='#',version="#",description='#',routes=app.routes)  app.openapi_schema= openapi_schema  return app.openapi_schema    app.openapi=forge_docs
 * запускаем генерацию документации для перехода по /redoc или /docs 	переходим по адресу указанному в app= FastAPI(openapi_url="#")
+[]
+* что делает FastAPI с выводами функций	конвертит их в json
+* синтаксис имени файла uvicorn --reload 	точечная нотация path_to.file:fastapi_var_name
+* создаём shell-скрипт для pycharm 	...(вверху справа)> edit > "+" > shell script
+* pydantic в контексте json 	позволяет из валидных json'ов создавать объекты классов унаследованных от pydantic.BaseModel
+* содержимое аргумента curl -X "http-method" "/path_to/page/"
+* curl -H "accept:application/json", расшифровка 	мы согласны принять в качестве ответа на запрос json-файл
+* curl -H "Content-Type:application/json", расшифровка 	мы отправим в запросе json-файл
+* внутри jinja2 шаблона {{ some_text|title}}, расшифровка	выводим переменную, задекорировав её (str.title(some_text))
+* генерируем curl-запрос	 после создания документации swagger(/docs) создаём тестовый запрос, и копируем curl-аналог оттуда
