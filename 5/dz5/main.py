@@ -13,6 +13,8 @@ API должен содержать следующие конечные точк
 Для каждой конечной точки необходимо проводить валидацию данных запроса и ответа.   +
 Для этого использовать библиотеку Pydantic.
 """
+import pdb
+
 from pydantic import BaseModel
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, HTMLResponse, RedirectResponse
@@ -53,6 +55,10 @@ class Tasks:
         except KeyError:
             return None
 
+    @classmethod
+    def __setitem__(cls, key, value):
+        cls._all[key] = dict(value)
+
 
 class Task(BaseModel):
     title: str
@@ -90,9 +96,11 @@ async def post_task(item: Task):
 @app.put("/tasks/{task_id}")
 def edit_task(task_id: int, item: "Task"):
     if not SRC[task_id]:
-        return RedirectResponse(url=f"/items/{task_id}",status_code=404)
+        return RedirectResponse(url=f"/items/{task_id}", status_code=404)
+    # pdb.set_trace()
     SRC[task_id] = item
-    return HTMLResponse("Edited!")
+    # pdb.set_trace()
+    return RedirectResponse(url=f"/tasks/{task_id}", status_code=308)
 
 
 @app.delete("/tasks/{task_id}")
