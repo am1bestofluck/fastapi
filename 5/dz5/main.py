@@ -94,7 +94,7 @@ async def post_task(item: Task):
 
 
 @app.put("/tasks/{task_id}")
-def edit_task(task_id: int, item: "Task"):
+async def edit_task(task_id: int, item: "Task"):
     if not SRC[task_id]:
         return RedirectResponse(url=f"/items/{task_id}", status_code=404)
     # pdb.set_trace()
@@ -104,7 +104,7 @@ def edit_task(task_id: int, item: "Task"):
 
 
 @app.delete("/tasks/{task_id}")
-def delete_task(task_id: int):
+async def delete_task(task_id: int):
     SRC.pop(task_id)
     return HTMLResponse("Deleted ;|")
 
