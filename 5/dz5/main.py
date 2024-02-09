@@ -103,7 +103,7 @@ async def edit_task(task_id: int, item: "Task"):
     return RedirectResponse(url=f"/tasks/{task_id}", status_code=308)
 
 
-@app.delete("/tasks/{task_id}")
+@app.delete("/tasks/{task_id}",response_class=HTMLResponse)
 async def delete_task(task_id: int):
     SRC.pop(task_id)
     return HTMLResponse("Deleted ;|")
